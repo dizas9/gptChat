@@ -3,14 +3,20 @@ import { API_URL } from "./API";
 
 const Chat = () => {
   const [prompt, setPrompt] = useState<string>("");
-  const [output, setOutput] = useState<string>("");
+  const [responses, setResponses] = useState<
+    { prompt: string; response: string }[]
+  >([]);
+  const [question, setQuestion] = useState<string>("");
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPrompt(event.target.value);
   };
 
   const handleSubmit = async () => {
+    //
+
     try {
+      setQuestion(prompt);
       const response = await fetch(`${API_URL}/api/chat`, {
         method: "POST",
         headers: {
@@ -24,7 +30,10 @@ const Chat = () => {
       }
 
       const data = await response.text();
-      setOutput(data);
+      if (data) {
+        setQuestion("");
+      }
+      setResponses([ ...responses, { prompt, response: data }]);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -32,8 +41,13 @@ const Chat = () => {
 
   return (
     <div>
-      <h2>Reply</h2>
-      <pre>{output}</pre>
+      {[...responses].map((item, index) => (
+        <div key={index}>
+          <h2>{item.prompt}</h2>
+          <pre key={index}>{item.response}</pre>
+        </div>
+      ))}
+      {question && <h2>{question}</h2>}
       <input type="text" value={prompt} onChange={handleInputChange} />
       <button onClick={handleSubmit}>Submit</button>
     </div>

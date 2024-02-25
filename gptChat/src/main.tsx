@@ -2,12 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { BrowserRouter } from "react-router-dom";
+// import { BrowserRouter } from "react-router-dom";
+import { DrawerContext } from "./hooks/useSidebarOpen.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
+  <DrawerContext>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </BrowserRouter>
+  </DrawerContext>
 );

@@ -1,15 +1,18 @@
 // import { useState } from 'react'
-import './App.css'
-import Chat from './Chat'
+import "./App.css";
+// import Chat from "./pages/Chat";
+import { Routes, Route } from "react-router-dom";
+import Homepage from "./pages/Homepage";
 
 function App() {
-  
-
   return (
     <>
-      <Chat/>
+      <Routes>
+        <Route index element={<Homepage />} />
+        {/* <Route path="/" element={<Chat />} /> */}
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

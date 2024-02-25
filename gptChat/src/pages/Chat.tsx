@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { API_URL } from "./API";
+import { API_URL } from "../API";
 
 const Chat = () => {
   const [prompt, setPrompt] = useState<string>("");

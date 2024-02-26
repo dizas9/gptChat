@@ -14,7 +14,7 @@ export default function Homepage() {
       </div>
 
 
-      <div className="lg:ml-[3%]  mx-1 border-2 flex justify-center">
+      <div className="lg:ml-[3%]  mx-1 flex justify-center">
         <Chat/>
       </div>
     </div>

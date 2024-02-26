@@ -1,7 +1,6 @@
-import React, { useState, createContext, useContext } from "react";
+import  { useState, createContext, useContext } from "react";
 
 interface SideBarOpenContextProps {
-  children?: React.ReactNode;
   isSideBarOpen: boolean;
   handleSideBarOpen: () => void;
 }
@@ -9,7 +8,7 @@ interface SideBarOpenContextProps {
 //default Context value
 const defaultContextValue: SideBarOpenContextProps = {
   isSideBarOpen: false,
-  handleSideBarOpen: () => {}, 
+  handleSideBarOpen: () => {},
 };
 
 export const SideBarOpenContext =
@@ -17,7 +16,7 @@ export const SideBarOpenContext =
 
 export const useSidebarOpen = () => useContext(SideBarOpenContext);
 
-export function DrawerContext({children}:SideBarOpenContextProps) {
+export function DrawerContext({ children }: { children: React.ReactNode }) {
   const [isSideBarOpen, setIsSideBarOpen] = useState<boolean>(false);
 
   const handleSideBarOpen = () => {
@@ -25,10 +24,9 @@ export function DrawerContext({children}:SideBarOpenContextProps) {
     console.log("inside side", isSideBarOpen);
   };
 
-
   return (
-    <SideBarOpenContext.Provider value={{isSideBarOpen, handleSideBarOpen}}>
+    <SideBarOpenContext.Provider value={{ isSideBarOpen, handleSideBarOpen }}>
       {children}
     </SideBarOpenContext.Provider>
-  )
+  );
 }

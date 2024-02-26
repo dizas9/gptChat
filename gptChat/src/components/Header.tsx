@@ -8,12 +8,12 @@ export default function Header() {
   return (
     <div className="flex w-screen h-16 border-b-2 md:lg:relative fixed items-center lg:mx-5">
       {!isSideBarOpen && (
-        <button className=" flex w-fit absolute right-0 lg:left-0 md:left-2 bg-none button border-none lg:outline md:outline lg:outline-2 md:outline-2 lg:outline-slate-200 md:outline-slate-200 lg:outline-offset-2 md:outline-offset-2 h-10 items-center ">
+        <button className=" flex w-fit absolute right-0 lg:left-0 md:left-2 bg-none button border-none lg:outline md:outline lg:outline-2 md:outline-2 lg:outline-slate-200 md:outline-slate-200 lg:outline-offset-2 md:outline-offset-2 h-10 items-center ml-5 ">
           <img src="/edit.svg" alt="" className="w-6 lg:w-5" />
         </button>
       )}
 
-      <button className="absolute right-[32%] lg:left-14 md:left-24 p-0 button border-none lg:hover:bg-slate-50">
+      <button className="absolute right-[32%] lg:left-18 md:left-24 p-0 button border-none lg:hover:bg-slate-50">
         <div className="flex flex-row w-fit items-center">
           <span className="font-semibold text-[18px] mr-1 text-black">
             ChatGPT
@@ -27,7 +27,7 @@ export default function Header() {
 
       {mediaQuery <= 428 && (
         <button
-          className="lg:none button border-none"
+          className="lg:none button border-none p-2 ml-2"
           onClick={handleSideBarOpen}
         >
           <img src="/burger.svg" alt="" className="w-6" />

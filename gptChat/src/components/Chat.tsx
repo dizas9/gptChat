@@ -7,12 +7,11 @@ const Chat = () => {
     { prompt: string; response: string }[]
   >([]);
   const [question, setQuestion] = useState<string>("");
+  const responsesEndRef = useRef<HTMLDivElement>(null);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPrompt(event.target.value);
   };
-
-  const responsesEndRef = useRef<HTMLDivElement>(null);
 
   //scroll handler
   const scrollToBottom = () => {
@@ -56,7 +55,7 @@ const Chat = () => {
 
   return (
     <>
-      <div className="lg:h-[85vh] md:h-[85vh] h-[80vh] lg:w-[75rem] md:w-[50rem] w-full relative flex flex-col flex-wrap justify-center items-center ">
+      <div className="lg:h-[85vh] md:h-screen h-screen lg:mt-0 mt-24 lg:w-[75rem] md:w-[50rem] w-full relative flex flex-col flex-wrap justify-start items-center ">
         <div
           className="flex flex-col gap-0 overflow-y-scroll mb-24 lg:w-full md:w-full w-screen border-2 items-center "
           style={{
@@ -86,11 +85,12 @@ const Chat = () => {
           <div ref={responsesEndRef} />
         </div>
 
-        <div className="absolute lg:bottom-7 md:bottom-7 bottom-1 border-2 border-[2px solid] w-full lg:w-[60%] h-16 rounded-xl border-slate-400 flex items-center">
+        <div className="absolute lg:bottom-8 md:bottom-7 bottom-1 border-2 border-[2px solid] w-[90%] lg:md:w-[60%]  lg:md:h-16 h-14 rounded-xl border-slate-400 flex items-center">
           <input
             type="text"
             value={prompt}
-            className="w-[90%] h-14 outline-none rounded-xl pl-2"
+            placeholder="Message ChatGPT..."
+            className="w-[90%] h-12 outline-none rounded-xl pl-2"
             onChange={handleInputChange}
           />
           <button

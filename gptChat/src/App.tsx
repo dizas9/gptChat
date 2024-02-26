@@ -21,7 +21,9 @@ function App() {
         )}
 
         <div
-          className={`${isSideBarOpen ? "lg:w-[20%]" : "lg:w-[0%]"}  ${
+          className={`${
+            isSideBarOpen ? "lg:w-[20%] md:w-[30%]" : "lg:w-[0%] md:w-[0%]"
+          }  ${
             mediaQuery <= 428 && isSideBarOpen
               ? "z-50 absolute transition-all w-[80%] ease-linear duration-200 "
               : "w-0"
@@ -37,7 +39,11 @@ function App() {
           </button>
         </div>
 
-        <div className={`${isSideBarOpen ? "lg:w-[80%]" : "lg:w-[100%]"} z-10`}>
+        <div
+          className={`${
+            isSideBarOpen ? "lg:w-[80%] md:w-[70%]" : "lg:w-[100%]"
+          } z-10`}
+        >
           <Homepage />
         </div>
       </div>

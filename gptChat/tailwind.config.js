@@ -5,7 +5,8 @@ export default {
   theme: {
     screens: {
       sm: "428px",
-      lg: "800px",
+      md:"700px",
+      lg: "996px",
     },
     extend: {
       colors: {
@@ -17,9 +18,13 @@ export default {
 
         //background color
         sidebarDark: "#f9f9f9",
+        sidebarDark:"#b4b4b4",
         mainDark: "#242424",
       },
       fontFamily: ["Roboto", "Helvetica", "Arial", "sans-serif"],
+      fontSize: {
+        normal: "0.875rem",
+      },
     },
   },
   plugins: [],

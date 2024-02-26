@@ -12,7 +12,7 @@ export default function Sidebar() {
   };
   return (
     <>
-      <div className="h-[100vh] md:h-[100vh] bg-sidebarDark relative">
+      <div className="h-[100vh] md:h-[100vh] bg-sidebarDark relative overflow-hidden">
         {isSideBarOpen && (
           <>
             <button

@@ -14,34 +14,40 @@ function App() {
 
   return (
     <>
-      <div className="w-screen h-screen flex relative">
+      <div className="w-screen h-screen flex relative items-center">
         {/* //overlay effect */}
         {isSideBarOpen && mediaQuery <= 428 && (
           <div className="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
         )}
 
-        <div
-          className={`${
-            isSideBarOpen ? "lg:w-[20%] md:w-[30%]" : "lg:w-[0%] md:w-[0%]"
-          }  ${
-            mediaQuery <= 428 && isSideBarOpen
-              ? "z-50 absolute transition-all w-[80%] ease-linear duration-200 "
-              : "w-0"
-          } shadow-lg shadow-blue-500/50`}
-        >
-          <Sidebar />
-
-          <button
-            className="absolute top-2 right-[-4.5rem]   bg-transparent"
-            onClick={handleSideBarOpen}
+        {isSideBarOpen && (
+          <div
+            className={`${
+              isSideBarOpen
+                ? "lg:w-[20%] md:w-[30%] overflow-hidden"
+                : "w-0 overflow-hidden"
+            }  ${
+              mediaQuery <= 428 && isSideBarOpen
+                ? "z-50 absolute transition-all w-[80%] ease-linear duration-200 "
+                : "w-0"
+            } shadow-lg shadow-blue-500/50`}
           >
-            <img src="/cross.svg" alt="" className="w-9 object-cover" />
-          </button>
-        </div>
+            <Sidebar />
+
+            <button
+              className="absolute top-2 right-[-4.5rem]   bg-transparent"
+              onClick={handleSideBarOpen}
+            >
+              <img src="/cross.svg" alt="" className="w-9 object-cover" />
+            </button>
+          </div>
+        )}
 
         <div
           className={`${
-            isSideBarOpen ? "lg:w-[80%] md:w-[70%]" : "lg:w-[100%]"
+            isSideBarOpen
+              ? "lg:w-[80vw] md:w-[70%] overflow-hidden"
+              : "lg:w-[100%] overflow-hidden"
           } z-10`}
         >
           <Homepage />

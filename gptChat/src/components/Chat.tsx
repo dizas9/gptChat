@@ -1,17 +1,20 @@
-import React, { useState, useRef, useEffect } from "react";
-import { API_URL } from "../API";
+import { useRef, useEffect } from "react";
+import { useFetchResponse } from "../hooks/useFetchResponse";
+import Welcome from "./Welcome";
+// import { API_URL } from "../API";
 
 const Chat = () => {
-  const [prompt, setPrompt] = useState<string>("");
-  const [responses, setResponses] = useState<
-    { prompt: string; response: string }[]
-  >([]);
-  const [question, setQuestion] = useState<string>("");
+  const {
+    prompt,
+    responses,
+    question,
+    handleSubmit,
+    handleInputChange,
+    isClick,
+  } = useFetchResponse();
   const responsesEndRef = useRef<HTMLDivElement>(null);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPrompt(event.target.value);
-  };
+  console.log("responses", responses);
 
   //scroll handler
   const scrollToBottom = () => {
@@ -24,40 +27,12 @@ const Chat = () => {
     scrollToBottom();
   }, [responses, question]);
 
-  // user query handler
-  const handleSubmit = async () => {
-    try {
-      setQuestion(prompt);
-      const response = await fetch(`${API_URL}/api/chat`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ prompt }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = await response.text();
-      if (data) {
-        setQuestion("");
-      }
-      setResponses([...responses, { prompt, response: data }]);
-      setPrompt("");
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  //
-
   return (
     <>
       <div className="lg:h-[85vh] md:h-screen h-screen lg:mt-0 mt-24 lg:w-[75rem] md:w-[50rem] w-screen relative flex flex-col flex-wrap justify-start items-center ">
+        {!isClick && responses.length === 0 && <Welcome />}
         <div
-          className="flex flex-col gap-0 overflow-y-scroll mb-24 lg:w-full md:w-full w-screen items-center "
+          className="flex flex-col gap-0 overflow-y-scroll mb-24 lg:md:mt-10 mt-28 lg:w-full md:w-full w-screen items-center "
           style={{
             overflowY: "scroll",
             // "-ms-overflow-style": "none",
@@ -66,10 +41,13 @@ const Chat = () => {
         >
           {[...responses].map((item, index) => (
             <div key={index} className="flex flex-col">
-              <h2>{item.prompt}</h2>
+              <div className="flex gap-5">
+                <img src="/gpt.svg" alt="" className="w-6" />
+                <h2>{item.prompt ? item.prompt : "Question"}</h2>
+              </div>
               <div className=" lg:w-[40rem] md:w-[30rem] ">
                 <p
-                  key={index} 
+                  key={index}
                   className="lg:w-[40rem] md:w-[30rem] text-justify lg:p-3 md:pl-5 p-10"
                 >
                   {item.response}
@@ -78,9 +56,10 @@ const Chat = () => {
             </div>
           ))}
           {question && (
-            <h2 className="w-[60%] m-[10rem]]">
-              {question}
-            </h2>
+            <div className="flex gap-5 w-[60%]">
+              <img src="/gpt.svg" alt="" className="w-6" />
+              <h2 className=" m-[10rem]]">{question}</h2>
+            </div>
           )}
           <div ref={responsesEndRef} />
         </div>

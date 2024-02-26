@@ -13,9 +13,8 @@ export default function Homepage() {
         <SidebarIcon />
       </div>
 
-
       <div className="lg:ml-[3%]  mx-1 flex justify-center">
-        <Chat/>
+        <Chat />
       </div>
     </div>
   );

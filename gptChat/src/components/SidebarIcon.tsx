@@ -18,7 +18,7 @@ export default function SidebarIcon() {
   return (
     <>
       <div
-        className="lg:flex md:flex lg:h-6 lg:w-6 md:h-6 md:w-6 lg:flex-col md:flex-col hidden items-center justify-center relative z-40"
+        className="lg:flex md:flex lg:h-6 lg:w-6 md:h-6 md:w-6 lg:flex-col md:flex-col hidden items-center justify-center relative z-40 lg:ml-5"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={handleSideBarOpen}

@@ -6,7 +6,7 @@ export default function Header() {
   const { mediaQuery } = useMobileMode();
   const { isSideBarOpen, handleSideBarOpen } = useSidebarOpen();
   return (
-    <div className="flex lg:md:w-screen w-[45vh] h-16 lg:md:h-10 border-b-2 lg:md:border-none lg:md:relative fixed items-center lg:mx-5 lg:mt-5">
+    <div className="flex lg:md:w-screen w-screen h-16 lg:md:h-10 border-b-2 lg:md:border-none lg:md:relative fixed items-center lg:mx-5 lg:mt-5">
       {!isSideBarOpen && (
         <button className=" flex w-fit absolute right-0 lg:left-0 md:left-2 bg-none button border-none lg:outline md:outline lg:outline-2 md:outline-2 lg:outline-slate-200 md:outline-slate-200 lg:outline-offset-2 md:outline-offset-2 h-10 items-center ml-5 lg:mb-3 ">
           <img src="/edit.svg" alt="" className="w-6 lg:w-5 p-0" />

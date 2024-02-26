@@ -3,11 +3,11 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: "media",
   theme: {
-    screens: {
-      sm: "428px",
-      md:"700px",
-      lg: "996px",
-    },
+    // screens: {
+    //   sm: "428px",
+    //   md:"700px",
+    //   lg: "996px",
+    // },
     extend: {
       colors: {
         //text color

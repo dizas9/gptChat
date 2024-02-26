@@ -1,12 +1,19 @@
 import React, { useState, createContext, useContext } from "react";
 
 interface SideBarOpenContextProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   isSideBarOpen: boolean;
   handleSideBarOpen: () => void;
 }
 
-export const SideBarOpenContext = createContext<SideBarOpenContextProps | undefined >(undefined);
+//default Context value
+const defaultContextValue: SideBarOpenContextProps = {
+  isSideBarOpen: false,
+  handleSideBarOpen: () => {}, 
+};
+
+export const SideBarOpenContext =
+  createContext<SideBarOpenContextProps>(defaultContextValue);
 
 export const useSidebarOpen = () => useContext(SideBarOpenContext);
 

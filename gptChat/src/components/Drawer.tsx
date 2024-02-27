@@ -1,10 +1,19 @@
 import { useSidebarOpen } from "../hooks/useSidebarOpen";
 import useMobileMode from "../hooks/useMobileMode";
+import { useFetchResponse } from "../hooks/useFetchResponse";
 import { Drawer as MaterialDrawer } from "@material-tailwind/react";
 
 export default function Drawer() {
   const { isDrawerOpen, handleDrawerOpen } = useSidebarOpen();
   const { mediaQuery } = useMobileMode();
+  const { handleClearChat } = useFetchResponse();
+
+
+  //handleDrawerClick
+  const DrawerClickHandler=()=>{
+    handleDrawerOpen();
+    handleClearChat();
+  }
   return (
     <>
       {isDrawerOpen && mediaQuery <= 428 && (
@@ -26,7 +35,10 @@ export default function Drawer() {
               <img src="/cross.svg" alt="cross" className="w-8 " />
             </button>
 
-            <button className="flex w-full justify-start gap-2 items-center pt-5 relative button border-none">
+            <button
+              className="flex w-full justify-start gap-2 items-center pt-5 relative button border-none"
+              onClick={DrawerClickHandler}
+            >
               <img
                 src="/gpt.svg"
                 alt=""

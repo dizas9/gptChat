@@ -8,6 +8,7 @@ interface ResponseItem {
 
 interface FetchResponseContextProps {
   prompt: string;
+  promptTitle: string;
   responses: ResponseItem[];
   question: string;
   isClick: boolean;
@@ -22,8 +23,9 @@ interface FetchResponseContextProps {
 
 const defaultContextValue = {
   prompt: "",
+  promptTitle: "",
   responses: [],
-  question: "",
+  question: "Welcome To ChatGPT",
   isClick: false,
   handleInputChange: () => {},
   handleClick: () => {},
@@ -46,8 +48,9 @@ export function FetchResponseProvider({
   //state
 
   const [prompt, setPrompt] = useState<string>("");
+  const [promptTitle, setPromptTitle] = useState<string>("");
   const [responses, setResponses] = useState<ResponseItem[]>([]);
-  const [question, setQuestion] = useState<string>("");
+  const [question, setQuestion] = useState<string>("Welcome To ChatGPT");
   const [isClick, setClick] = useState<boolean>(false);
 
   //handle Input Change
@@ -55,20 +58,15 @@ export function FetchResponseProvider({
     setPrompt(event.target.value);
   };
 
-  //onClick Value handler
-
-  //    const handleClick = (
-  //      event: React.MouseEvent<HTMLDivElement, MouseEvent>
-  //    ) => {
-  //      const clickedElement = event.currentTarget;
-  //      const content = clickedElement.textContent;
-  //      if (content) {
-  //        setPrompt(content);
-  //      }
-  //    };
+  
 
   const handleClick = (title: string) => {
-    setPrompt(title);
+    setPromptTitle(title);
+
+    if (promptTitle.length !== 0 && prompt === "") {
+      handleSubmit();
+      setClick(true);
+    }
   };
 
   //Clear ChatHistory
@@ -84,16 +82,22 @@ export function FetchResponseProvider({
 
   //handle Async user Submit
   const handleSubmit = async () => {
+    const promptToSend = prompt ? prompt : promptTitle;
+    if(promptToSend){
+      setQuestion(promptToSend);
+    }
     setClick(true);
-    setQuestion(prompt);
+
     try {
       const response = await fetch(`${API_URL}/api/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ prompt }),
+        body: JSON.stringify({ prompt: promptToSend }),
       });
+
+      console.log("inside submit", promptToSend);
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -103,7 +107,7 @@ export function FetchResponseProvider({
       if (data) {
         setQuestion("");
       }
-      setResponses([...responses, { prompt, response: data }]);
+      setResponses([...responses, { prompt: promptToSend, response: data }]);
       setPrompt("");
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -113,6 +117,7 @@ export function FetchResponseProvider({
     <FetchResponseContext.Provider
       value={{
         prompt,
+        promptTitle,
         responses,
         question,
         handleSubmit,

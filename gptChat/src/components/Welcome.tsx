@@ -1,7 +1,7 @@
 import { useFetchResponse } from "../hooks/useFetchResponse";
 
 export default function Welcome() {
-  const { handleSubmit, handleClick } = useFetchResponse();
+  const { handleClick } = useFetchResponse();
 
   const demoQuestion = [
     {
@@ -24,7 +24,7 @@ export default function Welcome() {
   ];
   return (
     <>
-      <div className="flex flex-col w-full lg:w-[55rem] h-[90%] items-center justify-around md:justify-center md:gap-7 gap-2  lg:ml-32  mt-9 lg:mt-0">
+      <div className="flex flex-col w-full lg:w-[55rem] h-[90%] items-center justify-center md:justify-center md:gap-7 gap-7  lg:ml-32  mt-9 lg:mt-0">
         <div className="flex flex-col items-center gap-2">
           <img src="/gpt.svg" alt="" className="w-9" />
           <p className="text-black font-semibold text-2xl">
@@ -38,8 +38,8 @@ export default function Welcome() {
               className="border-2 p-2 rounded-lg md:w-[45%] md:h-fit"
               key={index}
               onClick={() => {
-                handleClick(items.title[index]);
-                handleSubmit();
+                handleClick(items.title);
+                
               }}
             >
               <p className="text-black font-semibold">{items.title}</p>

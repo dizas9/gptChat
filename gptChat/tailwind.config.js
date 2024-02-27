@@ -3,22 +3,16 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: "media",
   theme: {
-    // screens: {
-    //   sm: "428px",
-    //   md:"700px",
-    //   lg: "996px",
-    // },
     extend: {
       colors: {
         //text color
-
         secondarytxt: "#424242",
         tertiarytxt: "#676767",
         placeholderTxt: "rgba(0,0,0,.5)", // also textareaBorder(lite)
 
         //background color
         sidebarDark: "#f9f9f9",
-        sidebarDark:"#b4b4b4",
+        sidebarDark: "#b4b4b4",
         mainDark: "#242424",
       },
       fontFamily: ["Roboto", "Helvetica", "Arial", "sans-serif"],
@@ -27,5 +21,14 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwind-typewriter")({
+      wordsets: {
+        typewriter: {
+          words: [],
+          repeat: 0,
+        },
+      },
+    }),
+  ],
 };

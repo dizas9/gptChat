@@ -37,7 +37,7 @@ function App() {
           className={`${
             isSideBarOpen && mediaQuery >= 428
               ? "lg:w-[80vw] md:w-[70%] overflow-hidden "
-              : "lg:w-[100%] overflow-hidden"
+              : "lg:w-[100%] lg:overflow-hidden"
           } `}
         >
           <Homepage />

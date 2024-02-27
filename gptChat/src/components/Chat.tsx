@@ -1,6 +1,8 @@
 import { useRef, useEffect } from "react";
 import { useFetchResponse } from "../hooks/useFetchResponse";
 import Welcome from "./Welcome";
+import Loading from "./Loading";
+import TypewriterEffect from "./TypewriterEffect";
 // import { API_URL } from "../API";
 
 const Chat = () => {
@@ -45,28 +47,32 @@ const Chat = () => {
               <div key={index} className="flex flex-col">
                 <div className="flex gap-5">
                   <img src="/gpt.svg" alt="" className="w-6" />
-                  <h2>{item.prompt ? item.prompt : "Question"}</h2>
+                  <h2>{item.prompt}</h2>
                 </div>
-                <div className=" lg:w-[40rem] md:w-[30rem] ">
+                <div className=" lg:w-[40rem] md:w-[30rem]">
                   <p
                     key={index}
-                    className="lg:w-[40rem] md:w-[30rem] text-justify lg:p-3 md:pl-5 p-10"
+                    className=" lg:w-[40rem] md:w-[30rem] text-justify lg:p-3 md:pl-5 p-10 flex"
                   >
-                    {item.response}
+                    <TypewriterEffect text={item.response}/>
                   </p>
                 </div>
               </div>
             ))}
-            { question && (
+            {question && (
               <div className="flex gap-5 w-[60%] border-2">
                 <img src="/gpt.svg" alt="" className="w-6" />
-                <h2 className=" m-[10rem]]">{question? question: "First Response"}</h2>
+                <h2 className=" m-[10rem]] relative">
+                  {question}
+                  <span className="absolute lg:md:bottom-[-22px] bottom-[-20px] left-0">
+                    <Loading />
+                  </span>
+                </h2>
               </div>
             )}
             <div ref={responsesEndRef} />
           </div>
         )}
-
         <div className="absolute lg:bottom-9 md:bottom-7 bottom-1 border-2  w-[90%] lg:md:w-[60%]  lg:md:h-16 h-14 rounded-xl border-slate-400 flex items-center">
           <input
             type="text"

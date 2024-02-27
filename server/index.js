@@ -8,7 +8,12 @@ const port = 3000;
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:5000", "http://localhost:5173"],
+    origin: [
+      "http://localhost:5000",
+      "http://localhost:5173",
+      "https://gpt-chat-one.vercel.app",
+      "https://gptchat-s0td.onrender.com",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );

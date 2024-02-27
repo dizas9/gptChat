@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { API_URL } from "../API";
+import { API_URL,PROD_URL } from "../API";
 
 interface ResponseItem {
   prompt: string;
@@ -89,7 +89,7 @@ export function FetchResponseProvider({
     setClick(true);
 
     try {
-      const response = await fetch(`${API_URL}/api/chat`, {
+      const response = await fetch(`${PROD_URL}/api/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

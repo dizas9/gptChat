@@ -3,7 +3,7 @@ import { useFetchResponse } from "../hooks/useFetchResponse";
 import Welcome from "./Welcome";
 import Loading from "./Loading";
 import TypewriterEffect from "./TypewriterEffect";
-// import { API_URL } from "../API";
+
 
 const Chat = () => {
   const {

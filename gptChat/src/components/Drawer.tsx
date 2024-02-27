@@ -25,7 +25,7 @@ export default function Drawer() {
           <MaterialDrawer
             open={isDrawerOpen}
             onClose={handleDrawerOpen}
-            className="p-4"
+            className="p-4 dark:bg-mainDark"
             placeholder={""}
           >
             <button
@@ -42,34 +42,19 @@ export default function Drawer() {
               <img
                 src="/gpt.svg"
                 alt=""
-                className="w-6 outline outline-2 outline-slate-500 outline-offset-1 rounded-full"
+                className="w-6 outline outline-2 outline-slate-500 outline-offset-1 rounded-full dark:bg-white"
               />
 
-              <p className="text-sm font-bold text-black">New Chat</p>
-
-              <img src="/edit.svg" alt="" className="w-4 absolute right-5" />
-            </button>
-
-            <div className="w-full mt-5">
-              {/* Time record history */}
-
-              <p className="text-secondarytxt text-sm font-semibold pl-3">
-                Today
+              <p className="text-sm font-bold text-black dark:text-white">
+                New Chat
               </p>
 
-              <div className="bg-slate-200 pl-1 py-2 mx-2 rounded-md text-black font-normal flex justify-between">
-                <p className="">New Chat</p>
-
-                <div className="flex gap-1 pr-1">
-                  <img src="/more.svg" alt="" className="w-6 cursor-pointer" />
-                  <img
-                    src="/archive.svg"
-                    alt=""
-                    className="w-6 cursor-pointer"
-                  />
-                </div>
-              </div>
-            </div>
+              <img
+                src="/edit.svg"
+                alt=""
+                className="w-5 absolute right-5 dark:bg-white rounded-md"
+              />
+            </button>
 
             {/* upgrade plane Box */}
             <div className="flex absolute bottom-24 items-center gap-1">
@@ -94,8 +79,10 @@ export default function Drawer() {
               </span>
 
               <div className="flex flex-col ">
-                <p className="text-black font-normal">Upgrade plan</p>
-                <p className="text-tertiarytxt font-normal">
+                <p className="text-black dark:text-white text-sm font-semibold">
+                  Upgrade plan
+                </p>
+                <p className="text-tertiarytxt text-sm font-normal">
                   Get GPT-4, DALL·E, and more
                 </p>
               </div>
@@ -104,11 +91,17 @@ export default function Drawer() {
             {/* User Account Box */}
             <div className="flex absolute bottom-10 items-center gap-1">
               <span className="flex h-9 w-9 items-center justify-center rounded-full border border-token-border-light">
-                <img src="/profile.svg" alt="" className="w-6 " />
+                <img
+                  src="/profile.svg"
+                  alt=""
+                  className="w-6 dark:bg-white rounded-full"
+                />
               </span>
 
               <div className="flex flex-col ">
-                <p className="text-black font-normal">User Name</p>
+                <p className="text-black  dark:text-white text-sm font-semibold">
+                  User Name
+                </p>
               </div>
             </div>
           </MaterialDrawer>

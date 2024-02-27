@@ -11,7 +11,7 @@ export default {
         placeholderTxt: "rgba(0,0,0,.5)", // also textareaBorder(lite)
 
         //background color
-        sidebarDark: "#f9f9f9",
+
         sidebarDark: "#b4b4b4",
         mainDark: "#242424",
 
@@ -25,14 +25,5 @@ export default {
       },
     },
   },
-  plugins: [
-    require("tailwind-typewriter")({
-      wordsets: {
-        typewriter: {
-          words: [],
-          repeat: 0,
-        },
-      },
-    }),
-  ],
+  plugins: [],
 };

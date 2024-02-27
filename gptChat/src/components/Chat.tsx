@@ -55,7 +55,9 @@ const Chat = () => {
                     className="w-6 dark:bg-white h-fit rounded-full"
                   />
                   <div className="">
-                    <p className="font-semibold text-black dark:text-white">User</p>
+                    <p className="font-semibold text-black dark:text-white">
+                      User
+                    </p>
 
                     <h2>{item.prompt}</h2>
                   </div>
@@ -99,7 +101,7 @@ const Chat = () => {
             type="text"
             value={prompt}
             placeholder="Message ChatGPT..."
-            className="w-[90%] h-[100%] outline-none rounded-xl pl-2"
+            className="w-[90%] h-[100%] outline-none rounded-xl pl-2 bg-none dark:bg-inherit"
             onChange={handleInputChange}
           />
           <button

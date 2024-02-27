@@ -45,7 +45,11 @@ export default function Header() {
           className="lg:none button border-none p-2 ml-2"
           onClick={handleDrawerOpen}
         >
-          <img src="/burger.svg" alt="" className="w-6" />
+          <img
+            src={isDarkMode ? "/burgerD.svg" : "/burger.svg"}
+            alt=""
+            className="w-6"
+          />
         </button>
       )}
     </div>

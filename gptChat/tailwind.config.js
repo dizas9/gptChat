@@ -14,6 +14,10 @@ export default {
         sidebarDark: "#f9f9f9",
         sidebarDark: "#b4b4b4",
         mainDark: "#242424",
+
+        //border
+        border: "#AEB1B0",
+        borderDark: "#5d605f",
       },
       fontFamily: ["Roboto", "Helvetica", "Arial", "sans-serif"],
       fontSize: {

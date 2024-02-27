@@ -7,7 +7,7 @@
 
 @layer components{
   .button{
-    @apply rounded-[8px] border-[1px] border-[solid] px-[0.6em] py-[1.2rem] text-[1em] font-[500] cursor-pointer  hover:bg-slate-300;
+    @apply rounded-[8px] border-[0.1em] border-[solid] px-[0.6em] py-[1.2rem] text-[1em] font-[500] cursor-pointer  hover:bg-slate-300;
   }
 }
 

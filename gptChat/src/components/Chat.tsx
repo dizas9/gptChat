@@ -3,7 +3,7 @@ import { useFetchResponse } from "../hooks/useFetchResponse";
 import Welcome from "./Welcome";
 import Loading from "./Loading";
 import TypewriterEffect from "./TypewriterEffect";
-
+import useMatchMedia from "../hooks/useMatchMedia";
 
 const Chat = () => {
   const {
@@ -14,9 +14,12 @@ const Chat = () => {
     handleInputChange,
     isClick,
   } = useFetchResponse();
+
+  const { isDarkMode } = useMatchMedia();
+
   const responsesEndRef = useRef<HTMLDivElement>(null);
 
-  console.log("question", question);
+
 
   //scroll handler
   const scrollToBottom = () => {
@@ -36,32 +39,50 @@ const Chat = () => {
 
         {responses.length !== 0 && (
           <div
-            className="flex flex-col gap-0 overflow-y-scroll mb-24 lg:md:mt-10 mt-28 lg:w-full md:w-full w-screen items-center "
+            className="flex flex-col gap-0 overflow-y-scroll mb-24 lg:mb-32 lg:md:mt-10 mt-28 lg:w-full md:w-full w-screen items-center "
             style={{
               overflowY: "scroll",
-              // "-ms-overflow-style": "none",
-              // "scrollbar-width": "none",
             }}
           >
+            {/* Response Section */}
+
             {[...responses].map((item, index) => (
               <div key={index} className="flex flex-col">
                 <div className="flex gap-5">
-                  <img src="/gpt.svg" alt="" className="w-6" />
-                  <h2>{item.prompt}</h2>
+                  <img
+                    src="/userwht.svg"
+                    alt=""
+                    className="w-6 dark:bg-white h-fit rounded-full"
+                  />
+                  <div className="">
+                    <p className="font-semibold text-black dark:text-white">User</p>
+
+                    <h2>{item.prompt}</h2>
+                  </div>
                 </div>
-                <div className=" lg:w-[40rem] md:w-[30rem]">
+
+                <div className="flex lg:w-[40rem] md:w-[30rem] items-start">
+                  <img
+                    src="/gpt.svg"
+                    alt=""
+                    className="w-6 dark:bg-white h-fit rounded-full"
+                  />
                   <p
                     key={index}
                     className=" lg:w-[40rem] md:w-[30rem] text-justify lg:p-3 md:pl-5 p-10 flex"
                   >
-                    <TypewriterEffect text={item.response}/>
+                    <TypewriterEffect text={item.response} />
                   </p>
                 </div>
               </div>
             ))}
             {question && (
-              <div className="flex gap-5 w-[60%] border-2">
-                <img src="/gpt.svg" alt="" className="w-6" />
+              <div className="flex gap-5 w-[60%]">
+                <img
+                  src="/gpt.svg"
+                  alt=""
+                  className="w-6 dark:bg-white h-fit rounded-full"
+                />
                 <h2 className=" m-[10rem]] relative">
                   {question}
                   <span className="absolute lg:md:bottom-[-22px] bottom-[-20px] left-0">
@@ -73,19 +94,23 @@ const Chat = () => {
             <div ref={responsesEndRef} />
           </div>
         )}
-        <div className="absolute lg:bottom-9 md:bottom-7 bottom-1 border-2  w-[90%] lg:md:w-[60%]  lg:md:h-16 h-14 rounded-xl border-slate-400 flex items-center">
+        <div className="absolute lg:bottom-9 md:bottom-7 bottom-1 border-[0.1em]  w-[90%] lg:md:w-[60%]  lg:md:h-16 h-14 rounded-xl border-slate-400 flex items-center">
           <input
             type="text"
             value={prompt}
             placeholder="Message ChatGPT..."
-            className="w-[90%] h-12 outline-none rounded-xl pl-2"
+            className="w-[90%] h-[100%] outline-none rounded-xl pl-2"
             onChange={handleInputChange}
           />
           <button
-            className="w-[10%]  absolute lg:right-5 right-5 flex justify-center bg-slate-300 p-2 rounded-xl"
+            className="w-[10%]  absolute lg:right-5 right-5 flex justify-center bg-slate-300 p-2 rounded-xl dark:bg-borderDark"
             onClick={handleSubmit}
           >
-            <img src="/toparrowht.svg" alt="" className="w-6" />
+            <img
+              src={isDarkMode ? "/toparrow.svg" : "toparrowht.svg"}
+              alt=""
+              className="w-6"
+            />
           </button>
         </div>
 

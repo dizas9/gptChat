@@ -25,7 +25,7 @@ export default function SidebarIcon() {
       >
         <div
           className={`h-3 w-1 ${
-            isHovered ? " bg-slate-500" : " bg-black "
+            isHovered ? " bg-black dark:bg-slate-100" : " bg-slate-500 "
           } rounded-full ${
             isHovered && isSideBarOpen
               ? "transform translate-y-[0.15rem] rotate-[15deg]"
@@ -34,7 +34,7 @@ export default function SidebarIcon() {
         ></div>
         <div
           className={`h-3 w-1${
-            isHovered ? " bg-slate-500" : " bg-black "
+            isHovered ? " bg-black dark:bg-slate-100" : " bg-slate-500 "
           } rounded-full ${
             isHovered && isSideBarOpen
               ? "transform translate-y-[-0.15rem] rotate-[-15deg]"

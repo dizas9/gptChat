@@ -1,16 +1,17 @@
 import { useSidebarOpen } from "../hooks/useSidebarOpen";
 import { useFetchResponse } from "../hooks/useFetchResponse";
 
+
 export default function Sidebar() {
   const { isSideBarOpen } = useSidebarOpen();
   const { handleClearChat } = useFetchResponse();
-
+ 
   // const newChatHandler = () => {
   //   setNewChatTitle(question);
   // };
   return (
     <>
-      <div className="h-[100vh] md:h-[100vh] bg-sidebarDark relative overflow-hidden">
+      <div className="h-[100vh] md:h-[100vh] bg-sidebarDark dark:bg-[#171717] relative overflow-hidden">
         {isSideBarOpen && (
           <>
             <button
@@ -20,12 +21,18 @@ export default function Sidebar() {
               <img
                 src="/gpt.svg"
                 alt=""
-                className="w-6 outline outline-2 outline-slate-500 outline-offset-1 rounded-full"
+                className="dark:bg-white w-6 outline outline-2 outline-slate-500 outline-offset-1 rounded-full"
               />
 
-              <p className="text-sm font-bold text-black">New Chat</p>
+              <p className="text-sm font-bold text-black dark:text-white">
+                New Chat
+              </p>
 
-              <img src="/edit.svg" alt="" className="w-4 absolute right-5" />
+              <img
+                src="/edit.svg"
+                alt=""
+                className="w-6 rounded-md absolute right-5 dark:bg-white"
+              />
             </button>
 
             {/* upgrade plane Box */}
@@ -51,8 +58,10 @@ export default function Sidebar() {
               </span>
 
               <div className="flex flex-col ">
-                <p className="text-black font-normal">Upgrade plan</p>
-                <p className="text-tertiarytxt font-normal">
+                <p className="text-black dark:text-white text-sm font-semibold">
+                  Upgrade plan
+                </p>
+                <p className="text-tertiarytxt text-sm font-normal">
                   Get GPT-4, DALL·E, and more
                 </p>
               </div>
@@ -61,11 +70,17 @@ export default function Sidebar() {
             {/* User Account Box */}
             <div className="flex absolute bottom-10 items-center gap-1">
               <span className="flex h-9 w-9 items-center justify-center rounded-full border border-token-border-light">
-                <img src="/profile.svg" alt="" className="w-6 " />
+                <img
+                  src="/profile.svg"
+                  alt=""
+                  className="w-6 dark:bg-white rounded-full"
+                />
               </span>
 
               <div className="flex flex-col ">
-                <p className="text-black font-normal">User Name</p>
+                <p className="text-black  dark:text-white text-sm font-semibold">
+                  User Name
+                </p>
               </div>
             </div>
           </>

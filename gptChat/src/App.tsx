@@ -1,9 +1,9 @@
 // import { useState } from 'react'
 import "./App.css";
 import Drawer from "./components/Drawer";
-// import Chat from "./pages/Chat";
 
 import Sidebar from "./components/Sidebar";
+
 import useMobileMode from "./hooks/useMobileMode";
 import { useSidebarOpen } from "./hooks/useSidebarOpen";
 
@@ -13,12 +13,9 @@ function App() {
   const { isSideBarOpen, isDrawerOpen } = useSidebarOpen();
   const { mediaQuery } = useMobileMode();
 
-  
   return (
     <>
       <div className="w-screen h-screen flex relative items-center">
-        {/* //overlay effect */}
-
         <div
           className={`${
             isSideBarOpen && mediaQuery >= 428
@@ -29,7 +26,7 @@ function App() {
           <Sidebar />
         </div>
 
-        {/* Drawer */}
+        {/* Drawer in Mobile Mode */}
 
         {mediaQuery <= 428 && isDrawerOpen && <Drawer />}
 

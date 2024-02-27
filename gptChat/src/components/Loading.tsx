@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function Loading() {
   const [showDiv, setShowDiv] = useState<boolean>(true);
@@ -6,7 +6,7 @@ export default function Loading() {
   useEffect(() => {
     const interval = setInterval(() => {
       setShowDiv((prev) => !prev);
-    }, 500); 
+    }, 500);
 
     return () => clearInterval(interval);
   }, []);
@@ -14,9 +14,9 @@ export default function Loading() {
   return (
     <div className="flex items-center">
       {showDiv ? (
-        <div className="border-8 border-black w-4 h-4 rounded-full"></div>
+        <div className="border-8 border-black dark:border-white w-4 h-4 rounded-full"></div>
       ) : (
-        <div className="border-4 border-black w-2 h-2 rounded-full"></div>
+        <div className="border-4 border-black  dark:border-white  w-2 h-2 rounded-full"></div>
       )}
     </div>
   );

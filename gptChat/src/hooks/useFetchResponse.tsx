@@ -11,6 +11,7 @@ interface FetchResponseContextProps {
   promptTitle: string;
   responses: ResponseItem[];
   question: string;
+  
   isClick: boolean;
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleClick: (title: string) => void;
@@ -25,6 +26,7 @@ const defaultContextValue = {
   prompt: "",
   promptTitle: "",
   responses: [],
+ 
   question: "Welcome To ChatGPT",
   isClick: false,
   handleInputChange: () => {},
@@ -48,6 +50,7 @@ export function FetchResponseProvider({
   //state
 
   const [prompt, setPrompt] = useState<string>("");
+  
   const [promptTitle, setPromptTitle] = useState<string>("");
   const [responses, setResponses] = useState<ResponseItem[]>([]);
   const [question, setQuestion] = useState<string>("Welcome To ChatGPT");
@@ -111,6 +114,7 @@ export function FetchResponseProvider({
       setPrompt("");
     } catch (error) {
       console.error("Error fetching data:", error);
+      
     }
   };
   return (
@@ -125,6 +129,7 @@ export function FetchResponseProvider({
         isClick,
         handleClick,
         handleClearChat,
+        
       }}
     >
       {children}

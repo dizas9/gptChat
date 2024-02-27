@@ -5,7 +5,7 @@ export default function SidebarIcon() {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const { handleSideBarOpen, isSideBarOpen } = useSidebarOpen();
 
-  console.log("hover", isHovered);
+  
 
   const handleMouseEnter = () => {
     setIsHovered(true);

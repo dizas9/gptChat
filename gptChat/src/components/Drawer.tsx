@@ -1,28 +1,32 @@
-import { useEffect, useState } from "react";
 import { useSidebarOpen } from "../hooks/useSidebarOpen";
-import { useFetchResponse } from "../hooks/useFetchResponse";
+import useMobileMode from "../hooks/useMobileMode";
+import { Drawer as MaterialDrawer } from "@material-tailwind/react";
 
-
-export default function Sidebar() {
-  const { isSideBarOpen} = useSidebarOpen();
-const { question, handleClearChat } = useFetchResponse();
-  const [newChatTitle, setNewChatTitle] = useState<String>("");
-
-  
-
-
-  // const newChatHandler = () => {
-  //   setNewChatTitle(question);
-  // };
+export default function Drawer() {
+  const { isDrawerOpen, handleDrawerOpen } = useSidebarOpen();
+  const { mediaQuery } = useMobileMode();
   return (
     <>
-      <div className="h-[100vh] md:h-[100vh] bg-sidebarDark relative overflow-hidden">
-        {isSideBarOpen && (
-          <>
+      {isDrawerOpen && mediaQuery <= 428 && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+      )}
+
+      {isDrawerOpen && (
+        <div className="z-40 bg-white h-full relative">
+          <MaterialDrawer
+            open={isDrawerOpen}
+            onClose={handleDrawerOpen}
+            className="p-4"
+            placeholder={""}
+          >
             <button
-              className="flex w-full justify-start gap-2 items-center pt-5 relative button border-none"
-              onClick={handleClearChat}
+              className="absolute top-9 right-[-4rem] bg-transparent"
+              onClick={handleDrawerOpen}
             >
+              <img src="/cross.svg" alt="cross" className="w-8 " />
+            </button>
+
+            <button className="flex w-full justify-start gap-2 items-center pt-5 relative button border-none">
               <img
                 src="/gpt.svg"
                 alt=""
@@ -34,32 +38,26 @@ const { question, handleClearChat } = useFetchResponse();
               <img src="/edit.svg" alt="" className="w-4 absolute right-5" />
             </button>
 
-            {newChatTitle && (
-              <div className="w-full mt-5">
-                {/* Time record history */}
+            <div className="w-full mt-5">
+              {/* Time record history */}
 
-                <p className="text-secondarytxt text-sm font-semibold pl-3">
-                  Today
-                </p>
+              <p className="text-secondarytxt text-sm font-semibold pl-3">
+                Today
+              </p>
 
-                <div className="bg-slate-200 pl-1 py-2 mx-2 rounded-md text-black font-normal flex justify-between">
-                  <p className="">{newChatTitle}</p>
+              <div className="bg-slate-200 pl-1 py-2 mx-2 rounded-md text-black font-normal flex justify-between">
+                <p className="">New Chat</p>
 
-                  <div className="flex gap-1 pr-1">
-                    <img
-                      src="/more.svg"
-                      alt=""
-                      className="w-6 cursor-pointer"
-                    />
-                    <img
-                      src="/archive.svg"
-                      alt=""
-                      className="w-6 cursor-pointer"
-                    />
-                  </div>
+                <div className="flex gap-1 pr-1">
+                  <img src="/more.svg" alt="" className="w-6 cursor-pointer" />
+                  <img
+                    src="/archive.svg"
+                    alt=""
+                    className="w-6 cursor-pointer"
+                  />
                 </div>
               </div>
-            )}
+            </div>
 
             {/* upgrade plane Box */}
             <div className="flex absolute bottom-24 items-center gap-1">
@@ -101,9 +99,9 @@ const { question, handleClearChat } = useFetchResponse();
                 <p className="text-black font-normal">User Name</p>
               </div>
             </div>
-          </>
-        )}
-      </div>
+          </MaterialDrawer>
+        </div>
+      )}
     </>
   );
 }

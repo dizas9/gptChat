@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { API_URL } from "../API";
 
 interface ResponseItem {
@@ -12,8 +12,10 @@ interface FetchResponseContextProps {
   question: string;
   isClick: boolean;
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleClick: (tittle: string) => void;
+  handleClick: (title: string) => void;
   handleSubmit: () => void;
+
+  handleClearChat: () => void;
 }
 
 //default
@@ -26,6 +28,7 @@ const defaultContextValue = {
   handleInputChange: () => {},
   handleClick: () => {},
   handleSubmit: () => {},
+  handleClearChat: () => {},
 };
 
 export const FetchResponseContext =
@@ -68,11 +71,22 @@ export function FetchResponseProvider({
     setPrompt(title);
   };
 
+  //Clear ChatHistory
+  const handleClearChat = () => {
+    setResponses([]);
+  };
+
+  useEffect(() => {
+    if (responses.length === 0) {
+      setClick(false);
+    }
+  }, [responses]);
+
   //handle Async user Submit
   const handleSubmit = async () => {
-    setClick(!isClick);
+    setClick(true);
+    setQuestion(prompt);
     try {
-      setQuestion(prompt);
       const response = await fetch(`${API_URL}/api/chat`, {
         method: "POST",
         headers: {
@@ -105,6 +119,7 @@ export function FetchResponseProvider({
         handleInputChange,
         isClick,
         handleClick,
+        handleClearChat,
       }}
     >
       {children}

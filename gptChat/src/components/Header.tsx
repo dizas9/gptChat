@@ -4,9 +4,10 @@ import { useSidebarOpen } from "../hooks/useSidebarOpen";
 export default function Header() {
   //hooks
   const { mediaQuery } = useMobileMode();
-  const { isSideBarOpen, handleSideBarOpen } = useSidebarOpen();
+  const { isSideBarOpen,handleDrawerOpen } =
+    useSidebarOpen();
   return (
-    <div className="flex lg:md:w-screen w-screen h-16 lg:md:h-10 border-b-2 lg:md:border-none lg:md:relative fixed items-center lg:mx-5 lg:mt-5">
+    <div className="flex lg:md:w-screen w-screen h-16 lg:md:h-10 border-b-2 lg:md:border-none lg:md:relative fixed items-center lg:mx-5 lg:mt-5 z-20">
       {!isSideBarOpen && (
         <button className=" flex w-fit absolute right-0 lg:left-0 md:left-2 bg-none button border-none lg:outline md:outline lg:outline-2 md:outline-2 lg:outline-slate-200 md:outline-slate-200 lg:outline-offset-2 md:outline-offset-2 h-10 items-center ml-5 lg:mb-3 ">
           <img src="/edit.svg" alt="" className="w-6 lg:w-5 p-0" />
@@ -28,7 +29,7 @@ export default function Header() {
       {mediaQuery <= 428 && (
         <button
           className="lg:none button border-none p-2 ml-2"
-          onClick={handleSideBarOpen}
+          onClick={handleDrawerOpen}
         >
           <img src="/burger.svg" alt="" className="w-6" />
         </button>

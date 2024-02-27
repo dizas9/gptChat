@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { API_URL,PROD_URL } from "../API";
+import { PROD_URL } from "../API";
 
 interface ResponseItem {
   prompt: string;

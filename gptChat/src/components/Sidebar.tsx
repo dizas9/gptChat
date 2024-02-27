@@ -1,15 +1,9 @@
-import { useEffect, useState } from "react";
 import { useSidebarOpen } from "../hooks/useSidebarOpen";
 import { useFetchResponse } from "../hooks/useFetchResponse";
 
-
 export default function Sidebar() {
-  const { isSideBarOpen} = useSidebarOpen();
-const { question, handleClearChat } = useFetchResponse();
-  const [newChatTitle, setNewChatTitle] = useState<String>("");
-
-  
-
+  const { isSideBarOpen } = useSidebarOpen();
+  const { handleClearChat } = useFetchResponse();
 
   // const newChatHandler = () => {
   //   setNewChatTitle(question);
@@ -33,33 +27,6 @@ const { question, handleClearChat } = useFetchResponse();
 
               <img src="/edit.svg" alt="" className="w-4 absolute right-5" />
             </button>
-
-            {newChatTitle && (
-              <div className="w-full mt-5">
-                {/* Time record history */}
-
-                <p className="text-secondarytxt text-sm font-semibold pl-3">
-                  Today
-                </p>
-
-                <div className="bg-slate-200 pl-1 py-2 mx-2 rounded-md text-black font-normal flex justify-between">
-                  <p className="">{newChatTitle}</p>
-
-                  <div className="flex gap-1 pr-1">
-                    <img
-                      src="/more.svg"
-                      alt=""
-                      className="w-6 cursor-pointer"
-                    />
-                    <img
-                      src="/archive.svg"
-                      alt=""
-                      className="w-6 cursor-pointer"
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
 
             {/* upgrade plane Box */}
             <div className="flex absolute bottom-24 items-center gap-1">

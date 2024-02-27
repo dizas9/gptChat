@@ -11,12 +11,10 @@ interface FetchResponseContextProps {
   promptTitle: string;
   responses: ResponseItem[];
   question: string;
-  
   isClick: boolean;
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleClick: (title: string) => void;
   handleSubmit: () => void;
-
   handleClearChat: () => void;
 }
 
@@ -26,7 +24,6 @@ const defaultContextValue = {
   prompt: "",
   promptTitle: "",
   responses: [],
- 
   question: "Welcome To ChatGPT",
   isClick: false,
   handleInputChange: () => {},
@@ -50,7 +47,6 @@ export function FetchResponseProvider({
   //state
 
   const [prompt, setPrompt] = useState<string>("");
-  
   const [promptTitle, setPromptTitle] = useState<string>("");
   const [responses, setResponses] = useState<ResponseItem[]>([]);
   const [question, setQuestion] = useState<string>("Welcome To ChatGPT");
@@ -60,8 +56,6 @@ export function FetchResponseProvider({
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPrompt(event.target.value);
   };
-
-  
 
   const handleClick = (title: string) => {
     setPromptTitle(title);
@@ -86,7 +80,7 @@ export function FetchResponseProvider({
   //handle Async user Submit
   const handleSubmit = async () => {
     const promptToSend = prompt ? prompt : promptTitle;
-    if(promptToSend){
+    if(promptToSend) {
       setQuestion(promptToSend);
     }
     setClick(true);
@@ -114,7 +108,6 @@ export function FetchResponseProvider({
       setPrompt("");
     } catch (error) {
       console.error("Error fetching data:", error);
-      
     }
   };
   return (
@@ -129,7 +122,6 @@ export function FetchResponseProvider({
         isClick,
         handleClick,
         handleClearChat,
-        
       }}
     >
       {children}
